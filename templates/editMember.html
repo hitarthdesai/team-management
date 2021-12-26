@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<h1>Add a team member</h1>
+<h3>Set email, location and role.</h3>
+{% for member in currentMember %}
+<form action="../../" method="POST">
+  <h3>Info</h3>
+  <br>
+  <input type="number" value={{member.id}} hidden name="identity" />
+  <input type="text" value={{member.firstName}} name="firstName" /></br>
+  <br><input type="text" value={{member.lastName}} name="lastName" /></br>
+  <br><input type="email" value={{member.email}} name="email" /></br>
+  <br><input
+    type="number"
+    value={{member.phone}}
+    name="phoneNumber"
+    min="0000000000"
+    max="9999999999"
+  /></br>
+  <h3>Role</h3>
+  <br><input type="radio" name="isAdmin" value="no" checked>Regular - Can't delete Members</input></br>
+  <br><input type="radio" name="isAdmin" value="yes">Admin - Can delete members</input></br>
+  <br></br>
+  <input type="submit" value="Save" name="updateButton" />
+  <input type="submit" value="Delete" name="deleteButton" />
+</form>
+{% endfor %}{% endblock content %}

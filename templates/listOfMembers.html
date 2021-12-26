@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<a href="../team-management/add/"><button>Add new member</button></a>
+<h1>Team members</h1>
+<h3>You have {{members.count}} team members</h3>
+{% for member in members %}
+<a href="edit/{{member.id}}" class="linkToEditPage" id="{{member.id}}">
+  <div class="card">
+    <div class="left">
+      <img src="" />
+    </div>
+    <div class="right">
+      <p class="name">
+        {{member.firstName}} {{member.lastName}} {% if member.isAdmin %} (admin)
+        {% endif %}
+      </p>
+      <p class="phone">
+        {{member.phone|slugify|slice:':3'}}-{{member.phone|slugify|slice:'3:6'}}-{{member.phone|slugify|slice:'6:'}}
+      </p>
+      <p class="email">{{member.email}}</p>
+    </div>
+  </div>
+</a>
+{% endfor %} {% endblock content %}
